@@ -1,0 +1,384 @@
+/* ------------------------------------ */
+/* 🌐 Feuille de style de l'atelier CSS : Choisir entre Grid ou Flexbox */
+/* ------------------------------------ */
+
+/* Importation de la police d'écriture */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Marges latérales et haute alignées sur la maquette desktop (32px) */
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 32px 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #f8fafc;
+  color: #64748b;
+}
+
+/* ------------------------------------ */
+/* 🧱 Styles communs                     */
+/* ------------------------------------ */
+
+/* Chaque section est une "carte" blanche.
+   FLEXBOX en colonne : titre, contenu et justification s'empilent
+   verticalement avec un espacement constant (gap). */
+section {
+  margin-bottom: 47.8px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Encadré de justification affiché sous chaque section */
+.justification {
+  padding: 10px;
+  background: #dbeafe;
+  border-radius: 7px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #000;
+}
+
+.justification code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+/* Image remplacée par du texte sur fond bleu */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Petite étiquette bleue (badge de catégorie) */
+.badge {
+  padding: 4px 12px;
+  background: #dbeafe;
+  color: #2563eb;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 500;
+}
+
+/* Bouton principal */
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ------------------------------------ */
+/* 1️⃣ Navigation principale — FLEXBOX    */
+/* ------------------------------------ */
+/* Choix : Flexbox. La barre est organisée sur UN SEUL axe (une ligne).
+   - justify-content: space-between écarte le groupe gauche et le groupe droit
+   - align-items: center les centre verticalement
+   - gap gère les espacements sans marges manuelles
+   Grid serait superflu : aucune ligne/colonne à aligner entre éléments. */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+/* Flex imbriqué : logo puis liens, côte à côte */
+.navbar__left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.logo {
+  width: 140px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 32px;
+}
+
+.navbar__links a {
+  font-size: 15px;
+  line-height: 22.5px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.navbar__links a.is-active {
+  color: #2563eb;
+}
+
+/* Flex imbriqué : "Se connecter" puis le bouton */
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navbar__login {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #2563eb;
+}
+
+.btn--nav {
+  padding: 8px 20px;
+  font-size: 16px;
+  line-height: 24px;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+
+/* ------------------------------------ */
+/* 2️⃣ Nos formations populaires — GRID + FLEXBOX */
+/* ------------------------------------ */
+/* Choix : GRID pour la rangée de cartes.
+   repeat(3, 1fr) = 3 colonnes de largeur strictement identique, quel que soit
+   le contenu, et les cartes d'une même ligne ont la même hauteur (stretch).
+   Responsive : il suffira de passer à 1 colonne. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Choix : FLEXBOX en colonne à l'intérieur de chaque carte.
+   Les éléments s'empilent sur un seul axe vertical. */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 21px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card__image {
+  height: 197px;
+  border-radius: 8px;
+  font-size: 40px;
+}
+
+/* Flexbox : badge + durée sur une ligne */
+.card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card__duration {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.card__title {
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.card__text {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* margin-top: auto pousse le pied de carte en bas : prix et bouton restent
+   alignés d'une carte à l'autre, même si les textes n'ont pas la même longueur.
+   Flexbox + space-between : prix à gauche, bouton à droite. */
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.card__price {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* ------------------------------------ */
+/* 3️⃣ Article à la une — FLEXBOX         */
+/* ------------------------------------ */
+/* Choix : Flexbox. Deux blocs côte à côte sur une seule ligne :
+   - l'image garde une largeur fixe (flex: 0 0 400px)
+   - le texte prend tout l'espace restant (flex: 1)
+   En mobile : flex-direction: column suffit pour empiler. */
+.featured {
+  display: flex;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.featured__image {
+  flex: 0 0 400px;
+  font-size: 20px;
+}
+
+/* Flex en colonne, centré verticalement par rapport à l'image */
+.featured__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 32px;
+}
+
+.featured__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.featured__reading-time {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.featured__title {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.featured__text {
+  font-size: 16px;
+  line-height: 25.6px;
+}
+
+/* Flexbox : avatar à gauche, textes empilés à droite */
+.author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.author__avatar {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.author__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author__name {
+  font-size: 15px;
+  line-height: 22.5px;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.author__role {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+/* ------------------------------------ */
+/* 4️⃣ Technologies maîtrisées — FLEXBOX  */
+/* ------------------------------------ */
+/* Choix : Flexbox avec flex-wrap. Les pastilles ont des largeurs différentes
+   (selon leur texte) et passent à la ligne automatiquement s'il manque de la
+   place. justify-content: center les centre sur desktop.
+   Grid imposerait des colonnes de largeur égale : inadapté ici. */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.tag {
+  padding: 8px 16px;
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+/* ------------------------------------ */
+/* 5️⃣ Nos projets réalisés — GRID        */
+/* ------------------------------------ */
+/* Choix : Grid. C'est une vraie grille à 2 dimensions :
+   3 colonnes égales x 2 lignes de hauteur fixe, avec gap.
+   La 5e tuile s'étend sur 2 colonnes avec grid-column: span 2, ce qui serait
+   fastidieux en Flexbox (calculs de largeurs et alignement entre les lignes). */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 298px;
+  gap: 24px;
+}
+
+.gallery__item {
+  font-size: 28px;
+  padding: 16px;
+}
+
+.gallery__item--wide {
+  grid-column: span 2;
+}
+

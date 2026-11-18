@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atelier Grid vs Flexbox</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <!-- Section 1 : Navigation principale -->
+      <section class="section-navbar">
+        <h2>Navigation principale</h2>
+
+        <nav class="navbar" aria-label="Navigation principale">
+          <!-- Groupe de gauche : logo + liens -->
+          <div class="navbar__left">
+            <a class="logo placeholder" href="#" aria-label="TechPro, accueil">TechPro</a>
+            <ul class="navbar__links">
+              <li><a class="is-active" href="#">Accueil</a></li>
+              <li><a href="#">Produits</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Groupe de droite : connexion + inscription -->
+          <div class="navbar__right">
+            <a class="navbar__login" href="#">Se connecter</a>
+            <a class="btn btn--nav" href="#">S'inscrire</a>
+          </div>
+
+          <!-- Bouton burger : visible uniquement en version mobile -->
+          <button class="navbar__burger" type="button" aria-label="Ouvrir le menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+
+        <p class="justification">
+          J'ai utilisé Flexbox ici car la barre de navigation est organisée sur un seul axe (une seule ligne).
+          Avec "justify-content: space-between", le groupe « logo + liens » reste à gauche et le groupe
+          « connexion + inscription » reste à droite, sans calculer aucune largeur. align-items: center
+          les aligne verticalement et gap gère les espacements. Flexbox est aussi imbriqué pour la liste de
+          liens. 
+          <br>Grid : il n'y a ni lignes ni colonnes à aligner entre elles, et chaque élément garde la
+          largeur de son contenu.
+        </p>
+      </section>
+
+      <!-- Section 2 : Nos formations populaires -->
+      <section class="section-formations">
+        <h2>Nos formations populaires</h2>
+
+        <div class="cards">
+          <!-- Carte 1 -->
+          <article class="card">
+            <div class="card__image placeholder" role="img" aria-label="Illustration JavaScript">JavaScript</div>
+            <div class="card__meta">
+              <span class="badge">Développement</span>
+              <span class="card__duration">12h de cours</span>
+            </div>
+            <h3 class="card__title">JavaScript Moderne</h3>
+            <p class="card__text">Maîtrisez ES6+, async/await et les frameworks modernes</p>
+            <div class="card__footer">
+              <span class="card__price">299 €</span>
+              <a class="btn" href="#">S'inscrire</a>
+            </div>
+          </article>
+
+          <!-- Carte 2 -->
+          <article class="card">
+            <div class="card__image placeholder" role="img" aria-label="Illustration React">React</div>
+            <div class="card__meta">
+              <span class="badge">Framework</span>
+              <span class="card__duration">15h de cours</span>
+            </div>
+            <h3 class="card__title">React Avancé</h3>
+            <p class="card__text">Créez des applications web performantes avec React</p>
+            <div class="card__footer">
+              <span class="card__price">399 €</span>
+              <a class="btn" href="#">S'inscrire</a>
+            </div>
+          </article>
+
+          <!-- Carte 3 (masquée en version mobile, comme sur la maquette) -->
+          <article class="card">
+            <div class="card__image placeholder" role="img" aria-label="Illustration Node.js">Node.js</div>
+            <div class="card__meta">
+              <span class="badge">Backend</span>
+              <span class="card__duration">18h de cours</span>
+            </div>
+            <h3 class="card__title">Node.js &amp; Express</h3>
+            <p class="card__text">Développez des API REST et applications serveur</p>
+            <div class="card__footer">
+              <span class="card__price">449 €</span>
+              <a class="btn" href="#">S'inscrire</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="justification">
+          J'ai combiné les deux ici. Grid gère la rangée de cartes : repeat(3, 1fr) garantit trois colonnes
+          de largeur strictement identique, quel que soit le contenu, et toutes les cartes ont la même hauteur. Flexbox gère l'intérieur de chaque carte 
+        </p>
+      </section>
+
+      <!-- Section 3 : Article à la une -->
+      <section class="section-article">
+        <h2>Article à la une</h2>
+
+        <article class="featured">
+          <div class="featured__image placeholder" role="img" aria-label="Illustration de l'article">
+            Intelligence Artificielle
+          </div>
+
+          <div class="featured__content">
+            <div class="featured__meta">
+              <span class="badge">Technologies</span>
+              <span class="featured__reading-time">10 min de lecture</span>
+            </div>
+
+            <h3 class="featured__title">L'Impact de l'IA sur le Développement Web en 2024</h3>
+
+            <p class="featured__text">
+              L'intelligence artificielle révolutionne la façon dont nous concevons et développons des applications web.
+              Découvrez les dernières innovations et leur impact sur l'industrie du développement...
+            </p>
+
+            <div class="author">
+              <div class="author__avatar placeholder" role="img" aria-label="Photo de Marie Laurent">ML</div>
+              <div class="author__info">
+                <span class="author__name">Marie Laurent</span>
+                <span class="author__role">Lead Developer @ TechPro</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <p class="justification">
+          J'ai utilisé Flexbox ici car l'article est composé de deux blocs placés côte à côte sur une seule ligne.
+        </p>
+      </section>
+
+      <!-- Section 4 : Technologies maîtrisées -->
+      <section class="section-technologies">
+        <h2>Technologies maîtrisées</h2>
+
+        <ul class="tags">
+          <li class="tag">React.js</li>
+          <li class="tag">Vue.js</li>
+          <li class="tag">Node.js</li>
+          <li class="tag">TypeScript</li>
+          <li class="tag">Python</li>
+          <li class="tag">Docker</li>
+          <li class="tag">AWS</li>
+        </ul>
+
+        <p class="justification">
+          J'ai utilisé Flexbox ici car les pastilles ont chacune une largeur différente.
+        </p>
+      </section>
+
+      <!-- Section 5 : Nos projets réalisés -->
+      <section class="section-projets">
+        <h2>Nos projets réalisés</h2>
+
+        <div class="gallery">
+          <div class="gallery__item placeholder" role="img" aria-label="Projet : Inspiration Visuelle">Inspiration Visuelle</div>
+          <div class="gallery__item placeholder" role="img" aria-label="Projet : Grille Créative">Grille Créative</div>
+          <div class="gallery__item placeholder" role="img" aria-label="Projet : Moodboard Produits">Moodboard Produits</div>
+          <div class="gallery__item placeholder" role="img" aria-label="Projet : Univers en images">Univers en images</div>
+          <div class="gallery__item gallery__item--wide placeholder" role="img" aria-label="Projet : Collection en un coup d'œil">
+            Collection en un coup d'œil
+          </div>
+        </div>
+
+        <p class="justification">
+          J'ai utilisé Grid ici car la galerie est une vraie grille sur deux étages.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
